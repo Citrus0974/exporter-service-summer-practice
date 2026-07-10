@@ -21,8 +21,8 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public List<Player> getPlayers() {
-        List<PlayerViewDto> playerViewDtos = playerRepository.getPlayers();
-        return playerViewDtos.stream().map(playerMapper::toPlayer).toList();
+        return playerRepository.getPlayers().stream()
+                .map(playerMapper::toPlayer).toList();
     }
 
     @Override
@@ -40,7 +40,7 @@ public class PlayerServiceImpl implements PlayerService {
         player.setId(playerViewDto.getId());
         player.setCountry(player.getCountry());
         player.setNickname(playerViewDto.getCombinedName());
-        player.setFullName(playerViewDto.getCombinedName());
+//        player.setFullName(playerViewDto.getCombinedName());
         player.setTeamName(playerViewDto.getTeamName());
         return player;
     }

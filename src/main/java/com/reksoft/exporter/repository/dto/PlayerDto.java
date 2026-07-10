@@ -5,10 +5,8 @@ import lombok.Data;
 @Data
 public class PlayerDto {
     private Integer id;
-    private String name;
-    private String surname;
+    private String combinedName;
     private String nickname;
     private String country;
-    private Integer teamId;
-    private TeamDto team;
+    private String teamName;
 }

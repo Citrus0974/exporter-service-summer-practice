@@ -15,4 +15,7 @@ public interface TeamMapper {
     @Mapping(target = "players", source = "players")
     Team toTeam(TeamDto teamDto, List<Player> players);
 
+    Team toTeam(TeamDto teamDto);
+
+    List<Team> toTeamList(List<TeamDto> teamDtoList);
 }

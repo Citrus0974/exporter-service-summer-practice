@@ -6,6 +6,8 @@ import lombok.Data;
 public class PlayerViewDto {
     private Integer id;
     private String combinedName;
+    private String name;
+    private String surname;
     private String nickName;
     private String country;
     private String teamName;
