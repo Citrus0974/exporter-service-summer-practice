@@ -1,7 +1,9 @@
 package com.reksoft.exporter.service;
 
+import com.reksoft.exporter.mapper.PlayerMapper;
 import com.reksoft.exporter.model.Player;
 import com.reksoft.exporter.repository.PlayerApiRepository;
+import com.reksoft.exporter.repository.PlayerRepository;
 import com.reksoft.exporter.repository.dto.PlayerViewDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,14 +16,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PlayerServiceImpl implements PlayerService {
 
-    private final PlayerApiRepository playerApiRepository;
+    private final PlayerRepository playerRepository;
+    private final PlayerMapper playerMapper;
 
     @Override
     public List<Player> getPlayers() {
-        List<PlayerViewDto> playerViewDtos = playerApiRepository.getPlayers();
-        return playerViewDtos.stream().map(this::map).toList();
+        List<PlayerViewDto> playerViewDtos = playerRepository.getPlayers();
+        return playerViewDtos.stream().map(playerMapper::toPlayer).toList();
     }
 
+    @Deprecated
     private Player map(PlayerViewDto playerViewDto) {
         Player player = new Player();
         player.setId(playerViewDto.getId());

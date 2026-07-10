@@ -7,4 +7,5 @@ import java.util.List;
 public interface PlayerRepository {
 
     List<PlayerViewDto> getPlayers();
+
 }
