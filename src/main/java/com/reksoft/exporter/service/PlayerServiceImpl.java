@@ -25,6 +25,15 @@ public class PlayerServiceImpl implements PlayerService {
         return playerViewDtos.stream().map(playerMapper::toPlayer).toList();
     }
 
+    @Override
+    public List<String> getPlayerNamesByTeamName(String teamName) {
+        List<PlayerViewDto> playerViewDtos = playerRepository.getPlayers();
+        return playerViewDtos.stream()
+                .filter(p -> p.getTeamName().equals(teamName))
+                .map(PlayerViewDto::getCombinedName)
+                .toList();
+    }
+
     @Deprecated
     private Player map(PlayerViewDto playerViewDto) {
         Player player = new Player();
