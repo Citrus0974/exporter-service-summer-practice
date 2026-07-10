@@ -1,6 +1,7 @@
 package com.reksoft.exporter.service;
 
 import com.opencsv.CSVWriter;
+import com.reksoft.exporter.model.Player;
 import com.reksoft.exporter.model.Team;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,24 +18,32 @@ public class TeamCsvReportService {
 
     public File generateReport(String filePath) throws IOException {
         List<Team> teams = teamService.getTeams();
-        System.out.println(teams);
 
         File file = new File(filePath);
         try (CSVWriter writer = new CSVWriter(new FileWriter(file))) {
-            String[] header = {"Id", "TeamName", "Players"};
+            String[] header = {"ID", "Team Name", "Players"};
             writer.writeNext(header);
 
             for (Team team : teams) {
-                String playerNames = team.getPlayerNames().toString();
                 String[] line = {
                         String.valueOf(team.getId()),
                         team.getName(),
-                        playerNames.substring(1, playerNames.length()-1)
+                        playerNamesString(team.getPlayers())
                 };
                 writer.writeNext(line);
             }
         }
 
         return file;
+    }
+
+    private String playerNamesString(List<Player> players){
+        StringBuilder builder = new StringBuilder();
+        for(Player player : players){
+            builder.append(player.getCombinedName());
+            builder.append(", ");
+        }
+        builder.delete(builder.length() - 2, builder.length());
+        return builder.toString();
     }
 }

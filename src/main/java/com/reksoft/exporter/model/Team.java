@@ -8,5 +8,5 @@ import java.util.List;
 public class Team {
     private Integer id;
     private String name;
-    private List<String> playerNames;
+    private List<Player> players;
 }

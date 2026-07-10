@@ -26,11 +26,11 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public List<String> getPlayerNamesByTeamName(String teamName) {
+    public List<Player> getPlayersByTeamName(String teamName) {
         List<PlayerViewDto> playerViewDtos = playerRepository.getPlayers();
         return playerViewDtos.stream()
                 .filter(p -> p.getTeamName().equals(teamName))
-                .map(PlayerViewDto::getCombinedName)
+                .map(playerMapper::toPlayer)
                 .toList();
     }
 

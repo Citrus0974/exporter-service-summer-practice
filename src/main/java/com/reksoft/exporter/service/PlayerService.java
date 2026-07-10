@@ -8,5 +8,5 @@ public interface PlayerService {
 
     List<Player> getPlayers();
 
-    List<String> getPlayerNamesByTeamName(String teamName);
+    List<Player> getPlayersByTeamName(String teamName);
 }

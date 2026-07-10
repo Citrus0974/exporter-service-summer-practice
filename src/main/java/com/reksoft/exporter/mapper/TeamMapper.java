@@ -1,5 +1,6 @@
 package com.reksoft.exporter.mapper;
 
+import com.reksoft.exporter.model.Player;
 import com.reksoft.exporter.model.Team;
 import com.reksoft.exporter.repository.dto.TeamDto;
 import org.mapstruct.Mapper;
@@ -11,6 +12,7 @@ import java.util.List;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface TeamMapper {
 
-    Team toTeam(TeamDto teamDto, List<String> playerNames);
+    @Mapping(target = "players", source = "players")
+    Team toTeam(TeamDto teamDto, List<Player> players);
 
 }

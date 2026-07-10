@@ -1,6 +1,7 @@
 package com.reksoft.exporter.service;
 
 import com.reksoft.exporter.mapper.TeamMapper;
+import com.reksoft.exporter.model.Player;
 import com.reksoft.exporter.model.Team;
 import com.reksoft.exporter.repository.TeamRepository;
 import com.reksoft.exporter.repository.dto.TeamDto;
@@ -22,7 +23,7 @@ public class TeamServiceImpl implements TeamService{
         List<TeamDto> teamDtos = teamRepository.getTeams();
         List<Team> teams = new ArrayList<>();
         for (TeamDto teamDto : teamDtos){
-            List<String> players = playerService.getPlayerNamesByTeamName(teamDto.getName());
+            List<Player> players = playerService.getPlayersByTeamName(teamDto.getName());
             teams.add(teamMapper.toTeam(teamDto, players));
         }
         return teams;
