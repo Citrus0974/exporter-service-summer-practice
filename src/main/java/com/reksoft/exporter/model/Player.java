@@ -7,7 +7,7 @@ public class Player {
     private Integer id;
     private String combinedName;
     private String nickname;
-    private Integer country;
+    private String country;
     private String teamName;
     private String fullName;
 }
